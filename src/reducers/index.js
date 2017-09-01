@@ -26,7 +26,13 @@ const cards = (state = initialState, action) => {
 
     case ADD_TODO:
       return{
-        toDoColumn:[...state.toDoCards, newCard]
+        toDoColumn:[...state.toDoCards, action.newCard]
+      }
+      break;
+
+     case  DELETE_TODO:
+      return{
+        toDoColumn:[]
       }
       break;
 
@@ -38,7 +44,13 @@ const cards = (state = initialState, action) => {
 
     case ADD_DOING:
       return{
-        doingColumn:[...state.doingCards, newCard]
+        doingColumn:[...state.doingCards, action.newCard]
+      }
+      break;
+
+    case  DELETE_DOING:
+      return{
+        doingColumn:[]
       }
       break;
 
@@ -50,7 +62,13 @@ const cards = (state = initialState, action) => {
 
     case ADD_DONE:
      return{
-        doneColumn:[...state.doneCards, newCard]
+        doneColumn:[...state.doneCards, action.newCard]
+      }
+      break;
+
+    case DELETE_DONE:
+      return{
+        doneColumn:[]
       }
       break;
 

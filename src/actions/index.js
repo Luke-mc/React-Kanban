@@ -9,7 +9,7 @@ export const LOAD_DONE = 'LOAD_DONE';
 export const ADD_DONE = 'ADD_DONE';
 export const DELETE_DONE = 'DELETE_DONE';
 
-export const loadTodo = (cards) => {
+export const loadToDo = (cards) => {
   return{
     type: LOAD_TODO,
     toDoCards: cards
