@@ -1,6 +1,6 @@
 import React from 'react';
 
-const column = ({cards}) => {
+const doingColumn = ({cards}) => {
   console.log(cards);
   return (
     <ul>
@@ -20,4 +20,4 @@ const column = ({cards}) => {
   );
 };
 
-export default column;
+export default doingColumn;

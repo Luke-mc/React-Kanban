@@ -28,10 +28,17 @@ ul{
 
   margin-top: 1rem;
   display: inline-block;
-  border-width: 1rem;
+  padding: 1rem;
+  border-width: .5rem;
   border-style: solid;
   border-color: black;
+  background-color: orange;
 
+}
+
+.columnContainer{
+  display: flex;
+  flex-direction: row;
 }
 
 @keyframes App-logo-spin {

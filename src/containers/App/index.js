@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import { getCardsFromFakeXHR }  from '../../lib/cards.db.js';
-import { loadToDo } from '../../actions';
-import Column from '../../components/Column.js';
+import { getCardsFromFakeXHR, getDoingCardsFromFakeXHR }  from '../../lib/cards.db.js';
+import { loadToDo, loadDoing } from '../../actions';
+import ToDoColumn from '../../components/toDoColumn.js';
+import DoingColumn from '../../components/doingColumn.js';
+
 
 
 class App extends Component {
@@ -12,7 +14,16 @@ class App extends Component {
      getCardsFromFakeXHR()
       .then(cards => {
         this.props.loadToDo(cards);
+      })
+      .catch(err => {
+        console.log(err);
       });
+
+      getDoingCardsFromFakeXHR()
+      .then( cards => {
+         this.props.loadDoing(cards);
+      });
+
   }
 
   render() {
@@ -23,17 +34,14 @@ class App extends Component {
           </div>
 
           <div className = "columnContainer">
-            <Column
-              cards = {this.props.toDoCards}
+
+            <ToDoColumn
+            cards = {this.props.toDoCards}
             />
 
-            {/*<DoingList
+            <DoingColumn
               cards = {this.props.doingCards}
             />
-
-            <DoneList
-              cards = {this.props.doneCards}
-            />*/}
 
           </div>
       </div>
@@ -53,9 +61,13 @@ const mapDispatchToProps = dispatch => {
   return{
      loadToDo: (cards) => {
       dispatch(loadToDo(cards));
+      },
+      loadDoing: (cards) => {
+        dispatch(loadDoing(cards));
+      }
     }
   }
-}
+
 
 const ConnectedApp = connect(
     mapStateToProps,
@@ -63,3 +75,5 @@ const ConnectedApp = connect(
   )(App)
 
 export default ConnectedApp;
+
+
