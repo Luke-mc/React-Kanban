@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import { getCardsFromFakeXHR, getDoingCardsFromFakeXHR }  from '../../lib/cards.db.js';
-import { loadCards } from '../../actions';
+import  NewCard  from '../NewTask/index.js';
+import { getCardsFromFakeXHR, addCardToFakeXHR }  from '../../lib/cards.db.js';
+import { loadCards , addCard } from '../../actions';
 import Column from '../../components/column.js';
 
 
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      ishidden: true
+    };
+  }
 
   componentWillMount() {
      getCardsFromFakeXHR()
@@ -18,6 +25,20 @@ class App extends Component {
           console.log(err);
         });
   }
+
+  addNewCard(card){
+    addCardToFakeXHR(card)
+      .then(books => {
+          addCard(card);
+      });
+  }
+
+  toggleHidden () {
+    this.setState({
+      isHidden: !this.state.isHidden
+    });
+  }
+
 
   render() {
     let todoCards = this.props.cards.filter((card) => {
@@ -32,13 +53,25 @@ class App extends Component {
       return card.stage === 'done';
     });
 
+    const showPopup = () => {
+      document.getElementById('popup').style.display = "block";
+    };
+
+    const hidePopup = () => {
+      document.getElementById('popup').style.display = "none";
+    };
+
     return (
       <div className ="mainContainer">
           <div className = "header">
             <h1>kanban</h1>
+            <button className = "newTask" onClick={this.toggleHidden.bind(this)}>+ New Task</button>
           </div>
 
+          {!this.state.isHidden && <NewCard/> }\
+
           <div className = "columnContainer">
+
             <div className = "leftColumn">
               <h2>In Queue</h2>
                 <Column
@@ -51,7 +84,7 @@ class App extends Component {
                  cards = {doingCards}
                 />
             </div>
-            <div className = "middleColumn">
+            <div className = "rightColumn">
               <h2>Done</h2>
                  <Column
                  cards = {doneCards}

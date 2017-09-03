@@ -11,7 +11,7 @@ export const loadCards = (cards) => {
   };
 };
 
-export const addCards = (card) => {
+export const addCard = (card) => {
   return{
     type: ADD_CARDS,
     newCard: card

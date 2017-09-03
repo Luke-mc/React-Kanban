@@ -24,6 +24,8 @@
 }
 
 .header{
+  display:flex;
+  flex-direction: column;
   margin: 0;
   background-color: gray;
   color:lightgray;
@@ -36,12 +38,53 @@ h1{
 
 }
 
+.newTask {
+  display: flex;
+  align-self: flex-end;
+
+}
+
 h2{
     text-align: center;
     color: gray;
 }
 
+#popup{
+  position:fixed;
+  left: 50%;
+  top: 35%;
+  -ms-transform: translate(-50%,-50%);
+  -moz-transform:translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+   transform: translate(-50%,-50%);
+  background-color:rgba(0,0,0,0.7);
+  width: 30%;
+  height: 48%;
+  z-index:99;
+}
 
+form{
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+input{
+  padding: 1rem 2rem;
+  margin: 1rem 2rem;
+}
+
+select {
+  height: 3rem;
+  padding: 1rem 2rem;
+  margin: 1rem 2rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  margin: 1rem 2rem;
+}
 
 .columnContainer{
   display: flex;
@@ -64,7 +107,35 @@ ul{
 
 }
 
-.card{
+.done{
+
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  background-color: lightblue;
+  width: 350px;
+  height: 150px;
+
+}
+
+.doing{
+
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  background-color: lightgreen;
+  width: 350px;
+  height: 150px;
+
+}
+
+.todo{
 
   margin-top: 1rem;
   display: inline-block;

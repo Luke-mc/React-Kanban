@@ -7,9 +7,9 @@ const Column = ({cards}) => {
   return (
     <ul>
       {
-        cards.map(({title, priority, createdBy, AssignedTo}) => {
+        cards.map(({title, priority, createdBy, AssignedTo, stage}) => {
           return(
-            <div className="card">
+            <div className= {stage}>
               <p>{title}</p>
               <p>{priority}</p>
               <p>{createdBy}</p>
