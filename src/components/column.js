@@ -2,10 +2,12 @@ import React from 'react';
 
 
 
-const Column = ({title, priority, createdBy, AssignedTo}) => {
+const Column = ({cards}) => {
   console.log('TODO CARD:' ,cards);
   return (
     <ul>
+      {
+        cards.map(({title, priority, createdBy, AssignedTo}) => {
           return(
             <div className="card">
               <p>{title}</p>
@@ -14,7 +16,8 @@ const Column = ({title, priority, createdBy, AssignedTo}) => {
               <p>{AssignedTo}</p>
             </div>
           )
-
+        })
+      }
     </ul>
   );
 };

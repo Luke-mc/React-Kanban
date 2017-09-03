@@ -18,10 +18,50 @@
   font-size: large;
 }
 
+.mainContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  margin: 0;
+  background-color: gray;
+  color:lightgray;
+}
+
+h1{
+  padding-left: 1rem;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  font-weight: 100;
+
+}
+
+h2{
+    text-align: center;
+    color: gray;
+}
+
+
+
+.columnContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content:
+}
+
+.middleColumn{
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+
+}
+
 ul{
 
   display: flex;
   flex-direction: column;
+
+  padding: 1rem;
+
 }
 
 .card{
@@ -29,17 +69,16 @@ ul{
   margin-top: 1rem;
   display: inline-block;
   padding: 1rem;
-  border-width: .5rem;
+  border-width: 1px;
   border-style: solid;
   border-color: black;
   background-color: orange;
+  width: 350px;
+  height: 150px;
 
 }
 
-.columnContainer{
-  display: flex;
-  flex-direction: row;
-}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

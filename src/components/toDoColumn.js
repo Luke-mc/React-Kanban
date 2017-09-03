@@ -2,12 +2,10 @@ import React from 'react';
 
 
 
-const toDoColumn = ({cards}) => {
-  console.log(cards);
+const Column = ({title, priority, createdBy, AssignedTo}) => {
+  console.log('TODO CARD:' ,cards);
   return (
     <ul>
-      {
-        cards.map(({title, priority, createdBy, AssignedTo}) => {
           return(
             <div className="card">
               <p>{title}</p>
@@ -16,10 +14,9 @@ const toDoColumn = ({cards}) => {
               <p>{AssignedTo}</p>
             </div>
           )
-        })
-      }
+
     </ul>
   );
 };
 
-export default toDoColumn;
+export default Column;

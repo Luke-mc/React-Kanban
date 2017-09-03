@@ -1,75 +1,28 @@
 
-export const LOAD_TODO = 'LOAD_TODO';
-export const ADD_TODO = 'ADD_TODO';
-export const DELETE_TODO = 'DELETE_TODO';
-export const LOAD_DOING = 'LOAD_DOING';
-export const ADD_DOING = 'ADD_DOING';
-export const DELETE_DOING = 'DELETE_DOING';
-export const LOAD_DONE = 'LOAD_DONE';
-export const ADD_DONE = 'ADD_DONE';
-export const DELETE_DONE = 'DELETE_DONE';
+export const LOAD_CARDS = 'LOAD_CARDS';
+export const ADD_CARDS = 'ADD_CARDS';
+export const DELETE_CARDS = 'DELETE_CARDS';
 
-export const loadToDo = (cards) => {
+
+export const loadCards = (cards) => {
   return{
-    type: LOAD_TODO,
-    toDoCards: cards
+    type: LOAD_CARDS,
+    cards: cards
   };
 };
 
-export const addToDo = (card) => {
+export const addCards = (card) => {
   return{
-    type: ADD_TODO,
+    type: ADD_CARDS,
     newCard: card
   };
 };
 
-export const deleteToDo = (card) => {
+export const deleteCards = (card) => {
   return{
-    type: DELETE_TODO,
+    type: DELETE_CARDS,
     deleteCard: card
   };
 };
 
 
-export const loadDoing = (cards) => {
-  return{
-    type: LOAD_DOING,
-    doingCards: cards
-  };
-};
-
-export const addDoing = (card) => {
-  return{
-    type: ADD_DOING,
-    newCard: card
-  };
-};
-
-export const deleteDoing = (card) => {
-  return{
-    type: DELETE_DOING,
-    deleteCard: card
-  };
-};
-
-
-export const loadDone = (cards) => {
-  return{
-    type: LOAD_DONE,
-    doneCards: cards
-  };
-};
-
-export const addDone = (card) => {
-  return{
-    type: ADD_DONE,
-    newCard: card
-  };
-};
-
-export const deleteDone = (card) => {
-  return{
-    type: DELETE_DONE,
-    deleteCard: card
-  };
-};

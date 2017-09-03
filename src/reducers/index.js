@@ -1,74 +1,30 @@
 import {
-   LOAD_TODO,
-   ADD_TODO,
-   DELETE_TODO,
-   LOAD_DOING,
-   ADD_DOING,
-   DELETE_DOING,
-   LOAD_DONE,
-   ADD_DONE,
-   DELETE_DONE
-            } from '../actions';
+   LOAD_CARDS,
+   ADD_CARDS,
+   DELETE_CARDS,
+} from '../actions';
 
 const initialState = {
-   toDoColumn: [],
-   doingColumn: [],
-   doneColumn: []
+   cards: []
 };
 
 const cards = (state = initialState, action) => {
   switch(action.type){
-    case  LOAD_TODO:
+    case  LOAD_CARDS:
       return{
-        toDoColumn:[...action.toDoCards]
+          cards :[...action.cards]
       }
       break;
 
-    case ADD_TODO:
+    case ADD_CARDS:
       return{
-        toDoColumn:[...state.toDoCards, action.newCard]
+        toDoColumn:[...state.cards, action.newCard]
       }
       break;
 
-     case  DELETE_TODO:
+     case  DELETE_CARDS:
       return{
         toDoColumn:[]
-      }
-      break;
-
-    case  LOAD_DOING:
-      return{
-        doingColumn:[...action.doingCards]
-      }
-      break;
-
-    case ADD_DOING:
-      return{
-        doingColumn:[...state.doingCards, action.newCard]
-      }
-      break;
-
-    case  DELETE_DOING:
-      return{
-        doingColumn:[]
-      }
-      break;
-
-    case  LOAD_DONE:
-     return{
-        doneColumn:[...action.doneCards]
-      }
-      break;
-
-    case ADD_DONE:
-     return{
-        doneColumn:[...state.doneCards, action.newCard]
-      }
-      break;
-
-    case DELETE_DONE:
-      return{
-        doneColumn:[]
       }
       break;
 
