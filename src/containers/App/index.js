@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import  NewCard  from '../NewTask/index.js';
-import { getCardsFromFakeXHR, addCardToFakeXHR }  from '../../lib/cards.db.js';
-import { loadCards , addCard } from '../../actions';
+import { getCardsFromFakeXHR, addCardToFakeXHR, moveCardInFakeXHR, deleteCardFromFakeXHR }  from '../../lib/cards.db.js';
+import { loadCards , addCard, moveCard, deleteCard } from '../../actions';
+import DoingColumn from '../../components/doingColumn.js';
 import Column from '../../components/column.js';
-
-
+import DoneColumn from '../../components/doneColumn.js';
+import ToDoColumn from '../../components/toDoColumn.js';
 
 class App extends Component {
   constructor(){
@@ -24,12 +25,13 @@ class App extends Component {
         .catch(err => {
           console.log(err);
         });
+
   }
 
   addNewCard(card){
     addCardToFakeXHR(card)
-      .then(books => {
-          addCard(card);
+      .then(card => {
+        this.props.addCard(card);
       });
   }
 
@@ -38,6 +40,40 @@ class App extends Component {
       isHidden: !this.state.isHidden
     });
   }
+
+   moveDoneCard(card) {
+    moveCardInFakeXHR(card, 'doing')
+      .then(card => {
+        this.props.moveCard(card);
+      });
+  }
+
+  moveToDone(card) {
+    moveCardInFakeXHR(card, 'done')
+      .then(card => {
+        this.props.moveCard(card);
+      });
+  }
+
+
+  moveToQueue(card) {
+    moveCardInFakeXHR(card, 'todo')
+      .then(card => {
+        this.props.moveCard(card);
+      });
+
+  }
+
+  deleteACard(card) {
+    deleteCardFromFakeXHR(card)
+      .then(card => {
+        this.props.deleteCard(card);
+      })
+      .catch(err => {
+        console.log(err);
+     });
+  }
+
 
 
   render() {
@@ -53,13 +89,6 @@ class App extends Component {
       return card.stage === 'done';
     });
 
-    const showPopup = () => {
-      document.getElementById('popup').style.display = "block";
-    };
-
-    const hidePopup = () => {
-      document.getElementById('popup').style.display = "none";
-    };
 
     return (
       <div className ="mainContainer">
@@ -68,26 +97,33 @@ class App extends Component {
             <button className = "newTask" onClick={this.toggleHidden.bind(this)}>+ New Task</button>
           </div>
 
-          {!this.state.isHidden && <NewCard/> }\
+          {!this.state.isHidden && <NewCard/> }
 
           <div className = "columnContainer">
 
             <div className = "leftColumn">
               <h2>In Queue</h2>
-                <Column
+                <ToDoColumn
                 cards = {todoCards}
+                moveCard = {this.moveDoneCard.bind(this)}
+                deleteCard = {this.deleteACard.bind(this)}
                 />
             </div>
             <div className = "middleColumn">
               <h2>In Progress</h2>
-                <Column
+                <DoingColumn
                  cards = {doingCards}
+                 moveInQueue = {this.moveToQueue.bind(this)}
+                 moveToDone = {this.moveToDone.bind(this)}
+                 deleteCard = {this.deleteACard.bind(this)}
                 />
             </div>
             <div className = "rightColumn">
               <h2>Done</h2>
-                 <Column
+                 <DoneColumn
                  cards = {doneCards}
+                 moveCard = {this.moveDoneCard.bind(this)}
+                 deleteCard = {this.deleteACard.bind(this)}
                 />
             </div>
           </div>
@@ -104,9 +140,18 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-     loadCards: (cards) => {
+    loadCards: (cards) => {
       dispatch(loadCards(cards));
-      }
+      },
+    addCard: (card) => {
+        dispatch(addCard(card));
+      },
+    moveCard: (id) => {
+      dispatch(moveCard(id));
+      },
+    deleteCard: (card) => {
+      dispatch(deleteCard(card));
+      },
     }
   }
 

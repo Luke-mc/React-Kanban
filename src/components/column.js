@@ -14,6 +14,7 @@ const Column = ({cards}) => {
               <p>{priority}</p>
               <p>{createdBy}</p>
               <p>{AssignedTo}</p>
+              <button className="doing"></button>
             </div>
           )
         })

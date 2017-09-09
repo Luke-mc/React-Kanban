@@ -2,21 +2,29 @@ import React from 'react';
 
 
 
-const Column = ({title, priority, createdBy, AssignedTo}) => {
-  console.log('TODO CARD:' ,cards);
+const DoingColumn = ({cards, moveInQueue, moveToDone, deleteCard }) => {
+
   return (
     <ul>
+      {
+        cards.map((card) => {
           return(
-            <div className="card">
-              <p>{title}</p>
-              <p>{priority}</p>
-              <p>{createdBy}</p>
-              <p>{AssignedTo}</p>
+            <div className= 'doing'>
+              <p>{card.title}</p>
+              <p>{card.priority}</p>
+              <p>{card.createdBy}</p>
+              <p>{card.assignedTo}</p>
+              <button onClick = {moveInQueue.bind(this, card)} className="doing_btn_toDo">In Queue</button>
+              <button onClick = {moveToDone.bind(this, card)}  className="doing_btn_done">Done</button>
+              <button onClick = {deleteCard.bind(this, card)}  className="doing_btn_delete">Delete</button>
+
             </div>
           )
-
+        })
+      }
     </ul>
   );
 };
 
-export default Column;
+export default DoingColumn;
+

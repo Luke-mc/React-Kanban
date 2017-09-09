@@ -1,59 +1,94 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/index.js';
+import { addCardToFakeXHR } from '../../lib/cards.db.js';
 
 class NewCard extends Component {
   constructor(){
     super();
     this.state = {
-      userInput: '',
+      title: '',
+      priority: '',
+      createdBy: '',
+      assignedTo: '',
+      stage: 'todo'
     };
   }
 
-  submitNewCard() {
-    console.log(this.state.userInput);
-    this.props.addCard(this.state.userInput);
+
+  handleNewTitleInput(e){
+    this.setState({
+      title: e.target.value
+    });
   }
 
-  handleNewCardInput(e){
+   handleNewPriorityInput(e){
     this.setState({
-      userInput: e.target.value
+      priority: e.target.value
     });
+  }
+
+   handleNewCreatedByInput(e){
+    this.setState({
+      createdBy: e.target.value
+    });
+  }
+
+  handleNewAssignedToInput(e){
+    this.setState({
+      assignedTo: e.target.value
+    });
+  }
+
+
+  submitNewCard() {
+    let newCard = {
+      title: this.state.title,
+      priority: this.state.priority,
+      createdBy: this.state.createdBy,
+      assignedTo: this.state.assignedTo
+    };
+
+    addCardToFakeXHR(newCard);
+    this.props.addCard(newCard);
   }
 
   render(){
     return (
       <div id= "popup">
-       <form>
+       <form action= "/card" method= "post">
         <h2 className= "newtask">New Task</h2>
         <input
           className = "title"
           type="text"
           placeholder="Title"
-          onChange={this.handleNewCardInput.bind(this)}
+          onChange={this.handleNewTitleInput.bind(this)}
         />
          <input
           className = "creator"
           type="text"
           placeholder="Creator"
-          onChange={this.handleNewCardInput.bind(this)}
+          onChange={this.handleNewCreatedByInput.bind(this)}
         />
          <input
           className = "assigned"
           type="text"
           placeholder="Assigned To"
-          onChange={this.handleNewCardInput.bind(this)}
+          onChange={this.handleNewAssignedToInput.bind(this)}
         />
 
-        <select className = "select">
+        <select
+        className = "select"
+        onChange={this.handleNewPriorityInput.bind(this)}
+        >
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
           <option value="Blocker">Blocker</option>
         </select>
-
-        <button className = "btn" onClick={this.submitNewCard.bind(this)}>Submit</button>
        </form>
+        <button className = "btn" value= "Send" onClick={this.submitNewCard.bind(this)}>Submit</button>
+
       </div>
     )
   }

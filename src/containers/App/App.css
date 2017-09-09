@@ -47,6 +47,7 @@ h1{
 h2{
     text-align: center;
     color: gray;
+
 }
 
 #popup{
@@ -75,6 +76,25 @@ input{
   margin: 1rem 2rem;
 }
 
+/*button {
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin-left: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+*/
 select {
   height: 3rem;
   padding: 1rem 2rem;
@@ -95,7 +115,15 @@ select {
 .middleColumn{
   border-left: 1px solid black;
   border-right: 1px solid black;
+  min-width: 489px;
+}
 
+.leftColumn{
+  min-width: 489px;
+}
+
+.rightColumn{
+  min-width: 489px;
 }
 
 ul{
@@ -117,7 +145,7 @@ ul{
   border-color: black;
   background-color: lightblue;
   width: 350px;
-  height: 150px;
+  height: 180px;
 
 }
 
@@ -130,8 +158,9 @@ ul{
   border-style: solid;
   border-color: black;
   background-color: lightgreen;
+  min-width: 417px;
   width: 350px;
-  height: 150px;
+  height: 180px;
 
 }
 
@@ -144,8 +173,9 @@ ul{
   border-style: solid;
   border-color: black;
   background-color: orange;
+  min-width: 417px;
   width: 350px;
-  height: 150px;
+  height: 180px;
 
 }
 

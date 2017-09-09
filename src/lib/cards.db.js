@@ -51,14 +51,37 @@ const cardsFromFakeDB = [{
 
 
 export const getCardsFromFakeXHR = () => new Promise((resolve, reject) => {
-  setTimeout(() => resolve(cardsFromFakeDB), 500);
+  var oReq = new XMLHttpRequest();
+oReq.open("GET", "https://www.reddit.com/r/dogpictures/.json");
+oReq.send();
 });
 
 export const addCardToFakeXHR = (card) => new Promise((resolve, reject) => {
   setTimeout(() => {
-    card._id = Math.random();
+    card._id = Math.floor(Math.random()*100);
     cardsFromFakeDB.push(card);
     resolve(cardsFromFakeDB);
   }, 500);
 });
 
+export const moveCardInFakeXHR = (card, status) => new Promise((resolve, reject) => {
+    card.stage = status;
+    resolve(cardsFromFakeDB);
+});
+
+export const deleteCardFromFakeXHR = (card) => new Promise((resolve, reject) => {
+    cardsFromFakeDB.filter((thisCard) => {
+      cardsFromFakeDB.title = 'test';
+      return card._id !== parseInt(thisCard._id);
+    });
+    setTimeout(() => {
+      resolve(cardsFromFakeDB);
+  }, 500);
+});
+
+
+   // cardsFromFakeDB.map((singleCard) => {
+   //        if (parseInt(singleCard._id) === parseInt(card._id)) {
+   //          singleCard.stage = 'doing';
+   //        }
+   //      });

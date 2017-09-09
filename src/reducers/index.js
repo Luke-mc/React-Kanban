@@ -2,6 +2,7 @@ import {
    LOAD_CARDS,
    ADD_CARDS,
    DELETE_CARDS,
+   MOVE_CARD
 } from '../actions';
 
 const initialState = {
@@ -17,14 +18,26 @@ const cards = (state = initialState, action) => {
       break;
 
     case ADD_CARDS:
+
       return{
-        toDoColumn:[...state.cards, action.newCard]
+        cards :[...state.cards, action.newCard]
       }
+      break;
+
+    case  MOVE_CARD:
+      return{
+        cards: state.cards.filter((card) => {
+          return parseInt(card._id) !== parseInt(action.movedCard._id);
+        })
+      }
+
       break;
 
      case  DELETE_CARDS:
       return{
-        toDoColumn:[]
+        cards: state.cards.filter((card) => {
+          return card._id !== parseInt(action.deleteCard._id);
+        })
       }
       break;
 
