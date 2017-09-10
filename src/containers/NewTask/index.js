@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCard } from '../../actions/index.js';
+import { addCard, addDBCards } from '../../actions/index.js';
 import { addCardToFakeXHR } from '../../lib/cards.db.js';
 
 class NewCard extends Component {
@@ -48,9 +48,7 @@ class NewCard extends Component {
       createdBy: this.state.createdBy,
       assignedTo: this.state.assignedTo
     };
-
-    addCardToFakeXHR(newCard);
-    this.props.addCard(newCard);
+    this.props.addDBCards(newCard);
   }
 
   render(){
@@ -98,7 +96,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addCard: (newCard) => {
       dispatch(addCard(newCard))
-
+    },
+   addDBCards: (Card) => {
+      dispatch(addDBCards(Card))
     }
   }
 }

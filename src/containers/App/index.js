@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import './App.css';
 import  NewCard  from '../NewTask/index.js';
 import { getCardsFromFakeXHR, addCardToFakeXHR, moveCardInFakeXHR, deleteCardFromFakeXHR }  from '../../lib/cards.db.js';
-import { loadCards , addCard, moveCard, deleteCard } from '../../actions';
+import { loadCards , addDBCards, addCard, moveCard, deleteCard,  } from '../../actions';
 import DoingColumn from '../../components/doingColumn.js';
 import Column from '../../components/column.js';
 import DoneColumn from '../../components/doneColumn.js';
 import ToDoColumn from '../../components/toDoColumn.js';
+
+
 
 class App extends Component {
   constructor(){
@@ -17,22 +19,10 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
-     getCardsFromFakeXHR()
-        .then(cards => {
-          this.props.loadCards(cards);
-        })
-        .catch(err => {
-          console.log(err);
-        });
 
-  }
 
   addNewCard(card){
-    addCardToFakeXHR(card)
-      .then(card => {
-        this.props.addCard(card);
-      });
+    addDBCards(card);
   }
 
   toggleHidden () {
@@ -145,6 +135,9 @@ const mapDispatchToProps = dispatch => {
       },
     addCard: (card) => {
         dispatch(addCard(card));
+      },
+    addDBCards: (card) => {
+        dispatch(addDBCards(card));
       },
     moveCard: (id) => {
       dispatch(moveCard(id));
