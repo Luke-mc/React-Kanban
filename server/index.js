@@ -38,6 +38,14 @@ app.post("/card", (req, res) => {
         });
     });
 
+app.delete("/card/:id", (req,res) => {
+  Card.destroy({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  });
+});
+
 
 const server = app.listen(PORT, () => {
   db.sequelize.sync();

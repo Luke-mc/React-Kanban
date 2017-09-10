@@ -46,7 +46,8 @@ class NewCard extends Component {
       title: this.state.title,
       priority: this.state.priority,
       createdBy: this.state.createdBy,
-      assignedTo: this.state.assignedTo
+      assignedTo: this.state.assignedTo,
+      stage: 'todo'
     };
     this.props.addDBCards(newCard);
   }
@@ -54,7 +55,11 @@ class NewCard extends Component {
   render(){
     return (
       <div id= "popup">
-       <form action= "/card" method= "post">
+       <form onSubmit={e => {
+            e.preventDefault();
+
+            e.target.reset();
+          }} action= "/card" method= "post">
         <h2 className= "newtask">New Task</h2>
         <input
           className = "title"

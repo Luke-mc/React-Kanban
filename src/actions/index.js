@@ -20,7 +20,6 @@ export const getCards = () => {
 
     return Axios.get("http://localhost:3000/cards")
       .then(response => {
-        console.log(response.body);
         dispatch(loadCards(response.data));
       })
       .catch(error => {
@@ -30,8 +29,6 @@ export const getCards = () => {
 };
 
 export const addCard = (card) => {
-   card.stage = 'todo';
-   addCardToFakeXHR(card);
   return{
     type: ADD_CARDS,
     newCard: card
@@ -61,11 +58,23 @@ export const moveCard = (card) => {
 };
 
 
-export const deleteCard = (card) => {
+export const deleteCard = (id) => {
   return{
     type: DELETE_CARDS,
-    deleteCard: card
+    id: id
   };
 };
 
+export const deleteDBCards = (id) => {
+    return (dispatch) => {
+
+    return Axios.delete(`http://localhost:3000/card/${id}`)
+      .then(response => {
+        dispatch(deleteCard(id));
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+};
 

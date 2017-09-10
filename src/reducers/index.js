@@ -30,14 +30,11 @@ const cards = (state = initialState, action) => {
           return parseInt(card._id) !== parseInt(action.movedCard._id);
         })
       }
-
       break;
 
      case  DELETE_CARDS:
       return{
-        cards: state.cards.filter((card) => {
-          return card._id !== parseInt(action.deleteCard._id);
-        })
+         cards: state.cards.filter(card => card.id !== parseInt(action.id))
       }
       break;
 

@@ -9,8 +9,8 @@ import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import * as Actions from './actions';
 
-export default function configureStore(initialState) {
-  return createStore(cards, initialState,
+export default function configureStore() {
+  return createStore(cards,
 
     applyMiddleware(thunk)
   );

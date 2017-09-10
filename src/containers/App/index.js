@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import  NewCard  from '../NewTask/index.js';
 import { getCardsFromFakeXHR, addCardToFakeXHR, moveCardInFakeXHR, deleteCardFromFakeXHR }  from '../../lib/cards.db.js';
-import { loadCards , addDBCards, addCard, moveCard, deleteCard,  } from '../../actions';
+import { loadCards , addDBCards, addCard, moveCard, deleteDBCards,  } from '../../actions';
 import DoingColumn from '../../components/doingColumn.js';
 import Column from '../../components/column.js';
 import DoneColumn from '../../components/doneColumn.js';
@@ -19,11 +19,6 @@ class App extends Component {
     };
   }
 
-
-
-  addNewCard(card){
-    addDBCards(card);
-  }
 
   toggleHidden () {
     this.setState({
@@ -55,13 +50,8 @@ class App extends Component {
   }
 
   deleteACard(card) {
-    deleteCardFromFakeXHR(card)
-      .then(card => {
-        this.props.deleteCard(card);
-      })
-      .catch(err => {
-        console.log(err);
-     });
+    this.props.deleteDBCards(card.id);
+
   }
 
 
@@ -142,8 +132,8 @@ const mapDispatchToProps = dispatch => {
     moveCard: (id) => {
       dispatch(moveCard(id));
       },
-    deleteCard: (card) => {
-      dispatch(deleteCard(card));
+    deleteDBCards: (card) => {
+      dispatch(deleteDBCards(card));
       },
     }
   }
