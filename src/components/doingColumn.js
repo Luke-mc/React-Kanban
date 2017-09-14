@@ -8,8 +8,9 @@ const DoingColumn = ({cards, moveInQueue, moveToDone, deleteCard }) => {
     <ul>
       {
         cards.map((card) => {
+          var priority = `${card.priority}`;
           return(
-            <div className= 'doing'>
+            <div className= 'doing'id={priority}>
               <p>{card.title}</p>
               <p>{card.priority}</p>
               <p>{card.createdBy}</p>

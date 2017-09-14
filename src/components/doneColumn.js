@@ -13,14 +13,15 @@ const DoneColumn = ({cards, moveCard, deleteCard}) => {
       {
 
         cards.map((card) => {
-          var name = `done_${card._id}`
+
+          var priority = `${card.priority}`;
           return(
-            <div className ='done' id = {name}>
+            <div className ='done' id={priority}>
               <p>{card.title}</p>
               <p>{card.priority}</p>
               <p>{card.createdBy}</p>
               <p>{card.assignedTo}</p>
-              <p style = {{display: "none"}}>{card._id}</p>
+              <p style >{card._id}</p>
               <button onClick = {moveCard.bind(this, card)} className="done_btn_inProgress">In Progress</button>
               <button onClick = {deleteCard.bind(this, card)}  className="done_btn_delete">Delete</button>
             </div>

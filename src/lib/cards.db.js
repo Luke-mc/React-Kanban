@@ -34,9 +34,3 @@ export const deleteCardFromFakeXHR = (card) => new Promise((resolve, reject) => 
   }, 500);
 });
 
-
-   // cardsFromFakeDB.map((singleCard) => {
-   //        if (parseInt(singleCard._id) === parseInt(card._id)) {
-   //          singleCard.stage = 'doing';
-   //        }
-   //      });

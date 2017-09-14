@@ -27,11 +27,9 @@ app.post("/card", (req, res) => {
           createdBy: req.body.createdBy,
           assignedTo: req.body.assignedTo,
           stage: req.body.stage,
-        }).then(() => {
-          Card.findAll()
-          .then(card => {
-            res.json(card);
-          });
+        }).then((card) => {
+            console.log('route',card.dataValues);
+            res.json(card.dataValues);
          })
         .catch((err) => {
           console.log(err);
@@ -44,6 +42,17 @@ app.delete("/card/:id", (req,res) => {
       id: parseInt(req.params.id)
     }
   });
+  res.end();
+});
+
+app.put("/movecard/:id", (req,res) => {
+  Card.update(req.body,
+  {
+    where: {
+      id: parseInt(req.params.id)
+    }
+  });
+  res.end();
 });
 
 

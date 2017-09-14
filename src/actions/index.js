@@ -29,6 +29,7 @@ export const getCards = () => {
 };
 
 export const addCard = (card) => {
+
   return{
     type: ADD_CARDS,
     newCard: card
@@ -42,7 +43,8 @@ export const addDBCards = (card) => {
     card
     )
       .then(response => {
-        dispatch(addCard(card));
+        console.log('response',response);
+        dispatch(addCard(response.data));
       })
       .catch(error => {
         throw(error);
@@ -50,13 +52,26 @@ export const addDBCards = (card) => {
   };
 };
 
-export const moveCard = (card) => {
+export const moveCard = (id) => {
   return{
     type: MOVE_CARD,
-    movedCard: card
+    movedCard: id
   };
 };
 
+export const moveDBCards = (id) => {
+
+    return (dispatch) => {
+
+    return Axios.put(`http://localhost:3000/movecard/${id}`)
+      .then(response => {
+        dispatch(moveCard(id));
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+};
 
 export const deleteCard = (id) => {
   return{
@@ -66,6 +81,7 @@ export const deleteCard = (id) => {
 };
 
 export const deleteDBCards = (id) => {
+
     return (dispatch) => {
 
     return Axios.delete(`http://localhost:3000/card/${id}`)

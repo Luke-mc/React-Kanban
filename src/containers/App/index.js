@@ -69,6 +69,12 @@ class App extends Component {
       return card.stage === 'done';
     });
 
+    this.props.cards.map((card) => {
+      if(card.priority === 'low'){
+        card.style.backgroundColor = "red";
+      }
+    });
+
 
     return (
       <div className ="mainContainer">
